@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <ProgressBar
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <android.support.constraint.Guideline
+            android:id="@id/gl_thumbnail"
+            android:layout_width="4dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.25"/>
+
+        <ImageView
+            android:id="@id/iv_thumbnail"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:contentDescription="@string/cd_newsthumb"
+            android:padding="8dp"
+            android:src="@android:drawable/ic_menu_camera"
+            app:layout_constraintDimensionRatio="H, 1:1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/gl_thumbnail"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Title Here Title Here Title Here"
+            android:textSize="18sp"
+            app:layout_constraintLeft_toRightOf="@id/gl_thumbnail"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+        <TextView
+            android:id="@id/tv_section"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Section Here"
+            app:layout_constraintLeft_toRightOf="@id/gl_thumbnail"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"/>
+
+        <TextView
+            android:id="@id/tv_section_subsection_separator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="   "
+            app:layout_constraintLeft_toRightOf="@id/tv_section"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"/>
+
+        <TextView
+            android:id="@id/tv_subsection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Subsection Here"
+            app:layout_constraintLeft_toRightOf="@id/tv_section_subsection_separator"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"/>
+
+        <TextView
+            android:id="@id/tv_byline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Byline Here"
+            android:textStyle="italic"
+            app:layout_constraintLeft_toRightOf="@id/gl_thumbnail"
+            app:layout_constraintRight_toLeftOf="@id/iv_expand_collapse"
+            app:layout_constraintTop_toBottomOf="@id/tv_section"/>
+
+        <ImageView
+            android:id="@id/iv_expand_collapse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:src="@drawable/ic_keyboard_arrow_down_black_24dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_section"/>
+
+
+        <android.support.constraint.Barrier
+            android:id="@id/v_abstract_separator"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            app:constraint_referenced_ids="iv_thumbnail, tv_byline"
+            app:barrierDirection="bottom"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/v_abstract_separator">
+
+            <TextView
+                android:id="@id/tv_abstract"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="Abstract Here"
+                android:visibility="gone"/>
+        </LinearLayout>
+
+
+    </android.support.constraint.ConstraintLayout>
+</android.support.design.widget.CoordinatorLayout>

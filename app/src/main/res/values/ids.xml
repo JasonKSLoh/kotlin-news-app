@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <!--News Item-->
+    <item name="tv_section" type="id"/>
+    <item name="tv_subsection" type="id"/>
+    <item name="tv_title" type="id"/>
+    <item name="tv_abstract" type="id"/>
+    <item name="tv_byline" type="id"/>
+    <item name="iv_thumbnail" type="id"/>
+    <item name="gl_thumbnail" type="id"/>
+    <item name="tv_section_subsection_separator" type="id"/>
+    <item name="iv_expand_collapse" type="id"/>
+    <item name="v_abstract_separator" type="id"/>
+
+
+    <!--Main-->
+    <item name="gl_10" type="id"/>
+    <item name="gl_70" type="id"/>
+    <item name="gl_80" type="id"/>
+    <item name="tv_static_category" type="id"/>
+    <item name="v_separator_main" type="id"/>
+    <item name="spn_category" type="id"/>
+    <item name="iv_search" type="id"/>
+    <item name="pg_loading_main" type="id"/>
+    <item name="main_container" type="id"/>
+    <item name="toolbar_main" type="id"/>
+
+    <!--Web-->
+    <item name="wv_web" type="id"/>
+    <item name="toolbar_wv" type="id"/>
+    <item name="rv_main" type="id"/>
+    <item name="pg_loading_web" type="id"/>
+</resources>

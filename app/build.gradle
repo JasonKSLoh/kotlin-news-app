@@ -1,0 +1,47 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+def configPropertiesFile = rootProject.file("config.properties")
+def cfg = new Properties()
+cfg.load(new FileInputStream(configPropertiesFile))
+
+android {
+    compileSdkVersion cfg['compileSdkVersion'].toInteger()
+    defaultConfig {
+        applicationId cfg['applicationId']
+        minSdkVersion cfg['minSdkVersion'].toInteger()
+        targetSdkVersion cfg['targetSdkVersion'].toInteger()
+        versionCode cfg['versionCode'].toInteger()
+        versionName cfg['versionName']
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    buildTypes.each {
+        it.buildConfigField "String", "API_KEY", '\"' + cfg['apiKey'] + '\"'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation 'com.android.support:appcompat-v7:' + cfg['appCompatVersion']
+    implementation 'com.android.support.constraint:constraint-layout:' + cfg['constraintVersion']
+    implementation "com.google.code.gson:gson:" + cfg['gsonVersion']
+    implementation 'com.android.support:recyclerview-v7:' + cfg['supportDesignVersion']
+    implementation "com.squareup.picasso:picasso:" + cfg['picassoVersion']
+    implementation "com.android.support:design:" + cfg['supportDesignVersion']
+    implementation "io.reactivex.rxjava2:rxjava:" + cfg['rxJavaVersion']
+    implementation "io.reactivex.rxjava2:rxandroid:" + cfg['rxAndroidVersion']
+    implementation "com.squareup.okhttp3:okhttp:" + cfg['okhttpVersion']
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+}
