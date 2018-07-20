@@ -32,4 +32,12 @@
     <item name="toolbar_wv" type="id"/>
     <item name="rv_main" type="id"/>
     <item name="pg_loading_web" type="id"/>
+
+    <!--Launch-->
+    <item name="rv_news_sources"
+          type="id"/>
+    <item name="tv_newssource_name"
+          type="id"/>
+    <item name="iv_newssource_logo"
+          type="id"/>
 </resources>

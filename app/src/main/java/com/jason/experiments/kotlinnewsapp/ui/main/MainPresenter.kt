@@ -1,7 +1,7 @@
 package com.jason.experiments.kotlinnewsapp.ui.main
 
 import android.util.Log
-import com.jason.experiments.kotlinnewsapp.model.NewsResult
+import com.jason.experiments.kotlinnewsapp.model.NytNewsResult
 import com.jason.experiments.kotlinnewsapp.network.ApiHandler
 import io.reactivex.disposables.CompositeDisposable
 import java.lang.ref.WeakReference
@@ -10,7 +10,7 @@ import java.lang.ref.WeakReference
  * MainPresenter
  * Created by jason on 8/3/18.
  */
-class MainPresenter(parent: MainContract.ParentView, primary:MainContract.PrimaryView): MainContract.Presenter {
+class MainPresenter(parent: MainContract.ParentView, primary: MainContract.PrimaryView) : MainContract.Presenter {
 
     var compositeDisposable = CompositeDisposable()
     var primaryView = WeakReference<MainContract.PrimaryView>(primary)
@@ -26,24 +26,25 @@ class MainPresenter(parent: MainContract.ParentView, primary:MainContract.Primar
     }
 
 
-
+    @Suppress("MoveLambdaOutsideParentheses")
     override fun onSearchButtonClicked(category: String) {
         compositeDisposable.clear()
-        if (primaryView.get()?.canFetchNews() != true){
+        if (primaryView.get()?.canFetchNews() != true) {
             return
         }
         primaryView.get()?.showProgressIndicator(true)
-        val disposable = ApiHandler().fetchTopStories(category).subscribe({r ->
-            val results = r.results
-            if(results != null){
-                primaryView.get()?.updateNews(results)
-            } else {
-                Log.d("+_", "Empty list added")
-                val emptyResult = ArrayList<NewsResult>()
-                emptyResult.add(NewsResult())
-            }
-            primaryView.get()?.showProgressIndicator(false)
-        })
+        val disposable = ApiHandler().fetchTopStories(category)
+                .subscribe({ r ->
+                               val results = r.results
+                               if (results != null) {
+                                   primaryView.get()?.updateNews(results)
+                               } else {
+                                   Log.d("+_", "Empty list added")
+                                   val emptyResult = ArrayList<NytNewsResult>()
+                                   emptyResult.add(NytNewsResult())
+                               }
+                               primaryView.get()?.showProgressIndicator(false)
+                           })
         compositeDisposable.add(disposable)
     }
 }

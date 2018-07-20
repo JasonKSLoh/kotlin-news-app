@@ -17,7 +17,7 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import com.jason.experiments.kotlinnewsapp.BuildConfig
 import com.jason.experiments.kotlinnewsapp.R
-import com.jason.experiments.kotlinnewsapp.model.NewsResult
+import com.jason.experiments.kotlinnewsapp.model.NytNewsResult
 import com.jason.experiments.kotlinnewsapp.ui.NewsAdapter
 import com.jason.experiments.kotlinnewsapp.util.ApiConsts
 import com.jason.experiments.kotlinnewsapp.util.MiscUtils
@@ -71,7 +71,7 @@ class MainFragment: Fragment(), MainContract.PrimaryView {
     private fun setUpRecyclerView(){
         rvMain.layoutManager = LinearLayoutManager(context)
         rvMain.addItemDecoration(DividerItemDecoration(context, (rvMain.layoutManager as LinearLayoutManager).orientation))
-        rvMain.adapter = NewsAdapter(ArrayList<NewsResult>())
+        rvMain.adapter = NewsAdapter(ArrayList<NytNewsResult>())
     }
 
     private fun setUpSpinner(){
@@ -106,7 +106,7 @@ class MainFragment: Fragment(), MainContract.PrimaryView {
         presenter = pres
     }
 
-    override fun updateNews(fetchedResults: List<NewsResult>) {
+    override fun updateNews(fetchedResults: List<NytNewsResult>) {
         (rvMain.adapter as NewsAdapter).updateNewsResults(fetchedResults)
     }
 
@@ -132,7 +132,7 @@ class MainFragment: Fragment(), MainContract.PrimaryView {
         super.onViewStateRestored(savedInstanceState)
         val data = savedInstanceState?.getSerializable(KEY_RV_DATA)
         if(data != null){
-            (rvMain.adapter as NewsAdapter).newsResults = data as ArrayList<NewsResult>
+            (rvMain.adapter as NewsAdapter).newsResults = data as ArrayList<NytNewsResult>
             savedInstanceState.remove(KEY_RV_DATA)
         }
         rvMain.layoutManager.onRestoreInstanceState(savedInstanceState?.getParcelable(KEY_RV_LAYOUT))

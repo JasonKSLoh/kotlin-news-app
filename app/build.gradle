@@ -4,19 +4,21 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 def configPropertiesFile = rootProject.file("config.properties")
 def cfg = new Properties()
 cfg.load(new FileInputStream(configPropertiesFile))
 
 android {
-    compileSdkVersion cfg['compileSdkVersion'].toInteger()
+    compileSdkVersion 27
     defaultConfig {
-        applicationId cfg['applicationId']
-        minSdkVersion cfg['minSdkVersion'].toInteger()
-        targetSdkVersion cfg['targetSdkVersion'].toInteger()
-        versionCode cfg['versionCode'].toInteger()
-        versionName cfg['versionName']
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        applicationId 'com.jason.experiments.kotlinnewsapp'
+        minSdkVersion 21
+        targetSdkVersion 27
+        versionCode 2
+        versionName "2.0.0"
+        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
     buildTypes {
         release {
@@ -31,17 +33,26 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:' + cfg['appCompatVersion']
-    implementation 'com.android.support.constraint:constraint-layout:' + cfg['constraintVersion']
-    implementation "com.google.code.gson:gson:" + cfg['gsonVersion']
-    implementation 'com.android.support:recyclerview-v7:' + cfg['supportDesignVersion']
-    implementation "com.squareup.picasso:picasso:" + cfg['picassoVersion']
-    implementation "com.android.support:design:" + cfg['supportDesignVersion']
-    implementation "io.reactivex.rxjava2:rxjava:" + cfg['rxJavaVersion']
-    implementation "io.reactivex.rxjava2:rxandroid:" + cfg['rxAndroidVersion']
-    implementation "com.squareup.okhttp3:okhttp:" + cfg['okhttpVersion']
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    implementation "com.google.code.gson:gson:2.8.5"
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
+
+
+    implementation 'com.github.bumptech.glide:glide:4.7.1'
+    kapt 'com.github.bumptech.glide:compiler:4.7.1'
+
+
+    implementation "com.android.support:design:27.1.1"
+    implementation "io.reactivex.rxjava2:rxjava:2.1.16"
+    implementation "io.reactivex.rxjava2:rxandroid:2.0.2"
+    implementation "com.squareup.okhttp3:okhttp:3.11.0"
+
+    implementation 'com.github.stephanenicolas.toothpick:toothpick-runtime:1.1.3'
+    kapt 'com.github.stephanenicolas.toothpick:toothpick-compiler:1.1.3'
+
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }

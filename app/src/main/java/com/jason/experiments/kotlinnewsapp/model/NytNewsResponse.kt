@@ -4,11 +4,11 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 /**
- * NewsResponse
+ * NytNewsResponse
  * Created by jason on 7/3/18.
  */
 
-class NewsResponse {
+class NytNewsResponse {
 
     @SerializedName("status")
     @Expose
@@ -27,6 +27,6 @@ class NewsResponse {
     var numResults: Int? = null
     @SerializedName("results")
     @Expose
-    var results: List<NewsResult>? = null
+    var results: List<NytNewsResult>? = null
 
 }

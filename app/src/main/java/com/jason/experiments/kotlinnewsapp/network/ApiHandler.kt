@@ -2,7 +2,7 @@ package com.jason.experiments.kotlinnewsapp.network
 
 import com.google.gson.Gson
 import com.jason.experiments.kotlinnewsapp.BuildConfig
-import com.jason.experiments.kotlinnewsapp.model.NewsResponse
+import com.jason.experiments.kotlinnewsapp.model.NytNewsResponse
 import com.jason.experiments.kotlinnewsapp.util.ApiConsts
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit
  */
 class ApiHandler {
 
-    public fun fetchTopStories(category: String): Observable<NewsResponse>{
+    fun fetchTopStories(category: String): Observable<NytNewsResponse>{
         val url = ApiConsts.API_ENDPOINT + category + ".json?api-key=" + BuildConfig.API_KEY
         val client = OkHttpClient.Builder()
                 .connectTimeout(NetworkConsts.DEFAULT_TIMEOUT, TimeUnit.SECONDS)
@@ -33,10 +33,10 @@ class ApiHandler {
                 .build()
 
         return Observable.fromCallable<Any> { client.newCall(request).execute() }
-                .map<NewsResponse> { m  ->
+                .map<NytNewsResponse> { m  ->
                     val body = (m as Response).body()?.string()
                     val gson = Gson()
-                    val result:NewsResponse = gson.fromJson(body, NewsResponse::class.java)
+                    val result:NytNewsResponse = gson.fromJson(body, NytNewsResponse::class.java)
                     result
                 }
                 .subscribeOn(Schedulers.io())

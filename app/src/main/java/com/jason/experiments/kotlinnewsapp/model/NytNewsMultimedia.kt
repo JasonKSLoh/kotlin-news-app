@@ -5,11 +5,11 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 /**
- * NewsMultimedia
+ * NytNewsMultimedia
  * Created by jason on 7/3/18.
  */
 
-class NewsMultimedia: Serializable {
+class NytNewsMultimedia: Serializable {
 
     @SerializedName("url")
     @Expose

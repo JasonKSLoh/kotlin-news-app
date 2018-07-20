@@ -7,6 +7,7 @@ import com.jason.experiments.kotlinnewsapp.BuildConfig
 import com.jason.experiments.kotlinnewsapp.R
 import com.jason.experiments.kotlinnewsapp.util.addFragment
 import kotlinx.android.synthetic.main.activity_main.*
+import toothpick.Toothpick
 
 class MainActivity : AppCompatActivity(), MainContract.ParentView {
 
@@ -16,10 +17,20 @@ class MainActivity : AppCompatActivity(), MainContract.ParentView {
     lateinit var mainFragment: MainFragment
     lateinit var toolbar: Toolbar
 
+//    @Inject
+//    lateinit var ctx: Context
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setUp()
+//        setupToothpick()
+    }
+
+
+    fun setupToothpick(){
+        val scope = Toothpick.openScopes(application, this)
+        Toothpick.inject(this, scope)
     }
 
     fun setUp() {

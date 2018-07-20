@@ -1,6 +1,6 @@
 package com.jason.experiments.kotlinnewsapp.ui.main
 
-import com.jason.experiments.kotlinnewsapp.model.NewsResult
+import com.jason.experiments.kotlinnewsapp.model.NytNewsResult
 
 /**
  * MainContract
@@ -16,7 +16,7 @@ class MainContract {
     public interface PrimaryView{
         fun showProgressIndicator(shouldShow: Boolean)
         fun attachPresenter(pres: MainContract.Presenter)
-        fun updateNews(fetchedResults: List<NewsResult>)
+        fun updateNews(fetchedResults: List<NytNewsResult>)
         fun canFetchNews() : Boolean
         fun retrievePresenter(): Presenter
     }
