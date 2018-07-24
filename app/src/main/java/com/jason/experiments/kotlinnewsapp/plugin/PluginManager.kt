@@ -99,6 +99,7 @@ class PluginManager : PluginConnector.PluginConnectorCallbackListener {
             pluginConnector?.bindService()
             pluginIndex++
         } else {
+            pluginIndex = 0
             isActive = false
             listener?.onPluginMetaDataFetched(newsSources)
         }
