@@ -10,5 +10,8 @@
     <string name="no_network_message">Network Not Available</string>
     <string name="error_occurred_msg">An Error has occurred...</string>
     <string name="unable_to_load_msg">Unable to load news</string>
+    <string name="category">Category</string>
+    <string name="cd_news_search_icon">Load News Button</string>
+    <string name="cd_expand_collapse">Expand/Collapse Abstract</string>
 
 </resources>

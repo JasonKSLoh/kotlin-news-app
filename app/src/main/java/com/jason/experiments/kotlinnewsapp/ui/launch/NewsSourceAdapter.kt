@@ -1,5 +1,6 @@
 package com.jason.experiments.kotlinnewsapp.ui.launch
 
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,13 +9,15 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.jason.experiments.kotlinnewsapp.R
+import com.jason.experiments.kotlinnewsapp.plugin.PluginManager
+import com.jason.experiments.kotlinnewsapp.ui.news.NewsActivity
 import kotlinx.android.synthetic.main.item_news_source.view.*
 
 /**
  * NewsSourceAdapter
  * Created by jason on 20/7/18.
  */
-class NewsSourceAdapter(private val newsSources: List<NewsSource>)
+class NewsSourceAdapter(private var newsSources: List<NewsSource>)
     : RecyclerView.Adapter<NewsSourceAdapter.NewsSourceViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsSourceViewHolder {
@@ -29,9 +32,18 @@ class NewsSourceAdapter(private val newsSources: List<NewsSource>)
     override fun onBindViewHolder(holder: NewsSourceViewHolder, position: Int) {
         val newsSource = newsSources[position]
         holder.setupUi(newsSource)
-
+        holder.itemView.setOnClickListener {
+            val intent = Intent(it.context, NewsActivity::class.java)
+            intent.putExtra(PluginManager.KEY_PACKAGE_NAME, newsSource.pluginPackage)
+            intent.putExtra(PluginManager.KEY_PLUGIN_NAME, newsSource.title)
+            it.context.startActivity(intent)
+        }
     }
 
+    fun setNewsSources(sources: List<NewsSource>){
+        this.newsSources = sources
+        notifyDataSetChanged()
+    }
 
     class NewsSourceViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
         var ivLogo = itemView?.iv_newssource_logo
@@ -43,9 +55,8 @@ class NewsSourceAdapter(private val newsSources: List<NewsSource>)
                 ivLogo?.let { iv ->
                     iv.scaleType = ImageView.ScaleType.CENTER_CROP
                     Glide.with(ctx)
-                            .load(newsSource.resourceId)
+                            .load(newsSource.logo)
                             .into(iv)
-                    Log.d("+_", "Set imageview: ${newsSource.resourceId}")
                 }
             }
             tvName?.let {

@@ -12,9 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:name=".MainApp">
-        <activity android:name=".ui.main.MainActivity">
-
-        </activity>
         <activity android:name=".ui.web.WebActivity"
             android:configChanges="orientation|keyboard|keyboardHidden"/>
         <activity android:name=".ui.launch.LaunchActivity">
@@ -24,6 +21,14 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".ui.news.NewsActivity"/>
+
+        <service android:name=".builtinplugin.NewsApiMessengerService"
+            android:process=":externalPx">
+            <intent-filter>
+                <action android:name="com.jason.experiments.kotlinnewsapp.action_get_plugin"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

@@ -4,4 +4,7 @@
     <dimen name="card_top">8dp</dimen>
     <dimen name="rv_padding">16dp</dimen>
     <dimen name="card_big_text">20sp</dimen>
+    <dimen name="margin_news_toolbar_side">32dp</dimen>
+    <dimen name="margin_news_card">8dp</dimen>
+    <dimen name="margin_news_source_separation">24dp</dimen>
 </resources>

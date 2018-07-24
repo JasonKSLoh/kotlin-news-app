@@ -1,14 +1,13 @@
 package com.jason.experiments.kotlinnewsapp.ui.launch
 
-import com.jason.experiments.kotlinnewsapp.R
+import android.graphics.Bitmap
 
 /**
  * NewsSource
  * Created by jason on 20/7/18.
  */
-enum class NewsSource(val title: String, val resourceId: Int){
 
-    NYT("New York Times", R.drawable.nty_logo)
+data class NewsSource(val title: String, val logo: Bitmap, val pluginPackage: String){
 
 
 }

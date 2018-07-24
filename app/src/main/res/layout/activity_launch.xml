@@ -17,5 +17,20 @@
         android:padding="@dimen/rv_padding"
         />
 
+    <TextView
+        android:id="@id/tv_no_plugins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:padding="@dimen/card_top"
+        android:text="You have no news sources! Try installing a News Plugin"
+        android:gravity="center"
+        android:textColor="@color/text_default"
+        android:textSize="20sp"
+        />
+
 
 </android.support.constraint.ConstraintLayout>

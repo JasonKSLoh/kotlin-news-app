@@ -40,4 +40,24 @@
           type="id"/>
     <item name="iv_newssource_logo"
           type="id"/>
+    <item name="tv_no_plugins"
+          type="id"/>
+    <item name="news_container"
+          type="id"/>
+    <item name="toolbar_news"
+          type="id"/>
+    <item name="spinner_news_category"
+          type="id"/>
+    <item name="tv_news_category_label"
+          type="id"/>
+    <item name="iv_news_search_icon"
+          type="id"/>
+    <item name="rv_news"
+          type="id"/>
+    <item name="container_news_searchbar"
+          type="id"/>
+    <item name="tv_news_title"
+          type="id"/>
+    <item name="progressbar_loading"
+          type="id"/>
 </resources>
