@@ -7,6 +7,7 @@ import android.graphics.Bitmap
 import android.util.Log
 import android.widget.Toast
 import com.jason.experiments.kotlinnewsapp.BuildConfig
+import com.jason.experiments.kotlinnewsapp.mock.Mockable
 import com.jason.experiments.kotlinnewsapp.ui.launch.NewsSource
 import com.net.learning.kotlinnewspluginlib.NewsResult
 import com.net.learning.kotlinnewspluginlib.PluginConsts
@@ -16,6 +17,7 @@ import javax.inject.Inject
  * PluginManager
  * Created by jason on 23/7/18.
  */
+@Mockable
 class PluginManager : PluginConnector.PluginConnectorCallbackListener {
     companion object {
         private const val LOG_TAG = "+_PlgMgr"
