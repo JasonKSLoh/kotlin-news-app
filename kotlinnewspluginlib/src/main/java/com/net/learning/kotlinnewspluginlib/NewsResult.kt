@@ -6,6 +6,14 @@ import android.os.Parcelable
 /**
  * NewsResult
  * Created by jason on 20/7/18.
+ *
+ * @param title The title or headline of the article
+ * @param abstract The article's abstract or short text
+ * @param byline The byline or authors
+ * @param section Which section the article belongs to
+ * @param subsection Which subsection, if any, the article belongs to
+ * @param articleUrl The URL for the full article
+ * @param thumbUrl A thumbnail URL for the article
  */
 data class NewsResult(val title: String,
                       val abstract: String,

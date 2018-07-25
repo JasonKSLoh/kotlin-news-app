@@ -6,6 +6,12 @@ import android.os.*
 import android.util.Log
 import java.io.ByteArrayOutputStream
 
+/**
+ * PluginIpcHandler: Abstract Handler for the messenger
+ *
+ * @param context Any context
+ * @param newsManager A concrete NewsManager
+ */
 abstract class PluginIpcHandler(val context: Context, val newsManager: NewsManager): Handler(){
 
     final override fun handleMessage(msg: Message) {
@@ -55,6 +61,7 @@ abstract class PluginIpcHandler(val context: Context, val newsManager: NewsManag
         }
     }
 
+
     fun putMetaInfoInBundle(bundle: Bundle, pluginTitle: String, pluginLogo: Bitmap){
         bundle.putString(PluginConsts.KEY_NEWS_SRC, pluginTitle)
         val byteArrayOutputStream = ByteArrayOutputStream()
@@ -62,6 +69,11 @@ abstract class PluginIpcHandler(val context: Context, val newsManager: NewsManag
         bundle.putByteArray(PluginConsts.KEY_NEWS_LOGO, byteArrayOutputStream.toByteArray())
     }
 
+    /**
+     * Return a Bundle that contains the MetaData reply
+     *
+     * Just create a bundle then populate it using the method [putMetaInfoInBundle]
+     */
     abstract fun getMetaReplyBundle(): Bundle
 
     private final fun sendCategoriesReply(messenger: Messenger) {
@@ -79,6 +91,11 @@ abstract class PluginIpcHandler(val context: Context, val newsManager: NewsManag
         bundle.putStringArrayList(PluginConsts.KEY_NEWS_CATEGORIES, categories)
     }
 
+    /**
+     * Return a Bundle that contains the Categories reply
+     *
+     * Just create a bundle then populate it using the method [putCategoryInfoInBundle]
+     */
     abstract fun getCategoriesBundle(): Bundle
 
     private final fun sendNewsReply(messenger: Messenger, category: String) {
