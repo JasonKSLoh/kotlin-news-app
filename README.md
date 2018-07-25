@@ -14,12 +14,12 @@ Just made for trying out some things
 - Repo has 1 more plugin for New York Times(Needs to be installed separately)
 
 #### How the plugins are implemented
-- Plugins need to include the <kotlinnewspluginlib> aar 
-- Create a Service that extends <PluginMessengerService>
-- Give it an intent filter for <com.jason.experiments.kotlinnewsapp.action_get_plugin>
-- Create a concrete implementation of <NewsManager> which fetches the news from a source
-- Create a concrete implementation of <PluginIpcHandler> that takes in the <NewsManager>
-- Set the concrete <PluginIpcHandler> as the Messenger's Handler for the Service created earlier
+- Plugins need to include the *kotlinnewspluginlib* aar 
+- Create a Service that extends *PluginMessengerService*
+- Give it an intent filter for *com.jason.experiments.kotlinnewsapp.action_get_plugin*
+- Create a concrete implementation of *NewsManager* which fetches the news from a source
+- Create a concrete implementation of *PluginIpcHandler* that takes in the *NewsManager*
+- Set the concrete *PluginIpcHandler* as the Messenger's Handler for the Service created earlier
 - Install the plugin's APK
 
 ##### Some tools used
