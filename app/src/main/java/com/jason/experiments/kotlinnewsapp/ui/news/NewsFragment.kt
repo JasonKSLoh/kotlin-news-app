@@ -16,7 +16,7 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.Spinner
 import com.jason.experiments.kotlinnewsapp.R
-import com.jason.experiments.kotlinnewsapp.model.NewsResult
+import com.net.learning.kotlinnewspluginlib.NewsResult
 import kotlinx.android.synthetic.main.fragment_news.*
 
 /**

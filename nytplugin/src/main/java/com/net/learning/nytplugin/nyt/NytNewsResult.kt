@@ -2,7 +2,7 @@ package com.net.learning.nytplugin.nyt
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import com.net.learning.nytplugin.NewsResult
+import com.net.learning.kotlinnewspluginlib.NewsResult
 import java.io.Serializable
 
 /**

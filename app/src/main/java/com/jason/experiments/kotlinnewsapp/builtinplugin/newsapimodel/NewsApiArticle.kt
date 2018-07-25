@@ -2,7 +2,7 @@ package com.jason.experiments.kotlinnewsapp.builtinplugin.newsapimodel
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import com.jason.experiments.kotlinnewsapp.model.NewsResult
+import com.net.learning.kotlinnewspluginlib.NewsResult
 
 
 /**
@@ -32,7 +32,7 @@ class NewsApiArticle {
     @Expose
     var publishedAt: String? = null
 
-    fun toNewsResultStringArray(): Array<String>{
+    fun toNewsResultStringArray(): Array<String> {
         val nrTitle = if (title == null) {
             ""
         } else {
@@ -41,9 +41,9 @@ class NewsApiArticle {
         val nrSection = if (newsApiSource == null) {
             ""
         } else {
-            if(newsApiSource!!.name == null){
+            if (newsApiSource!!.name == null) {
                 ""
-            } else{
+            } else {
                 newsApiSource!!.name!!
             }
         }
@@ -53,7 +53,7 @@ class NewsApiArticle {
         } else {
             author!!
         }
-        val nrAbstract = if (description== null) {
+        val nrAbstract = if (description == null) {
             ""
         } else {
             description!!
@@ -63,14 +63,14 @@ class NewsApiArticle {
         } else {
             url!!
         }
-        val nrThumbUrl = if(urlToImage == null){
+        val nrThumbUrl = if (urlToImage == null) {
             ""
-        } else{
+        } else {
             urlToImage!!
         }
         return arrayOf(nrTitle, nrAbstract, nrByline, nrSection, nrSubSection, nrArticleUrl, nrThumbUrl)
-
     }
+
     fun toNewsResult(): NewsResult {
         val stringArray = toNewsResultStringArray()
         return NewsResult(stringArray[0],

@@ -1,6 +1,6 @@
 package com.jason.experiments.kotlinnewsapp.network
 
-import com.jason.experiments.kotlinnewsapp.model.NewsResult
+import com.net.learning.kotlinnewspluginlib.NewsResult
 
 /**
  * NewsRepo

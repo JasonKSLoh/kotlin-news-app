@@ -4,8 +4,8 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
-import com.jason.experiments.kotlinnewsapp.model.NewsResult
 import com.jason.experiments.kotlinnewsapp.plugin.PluginManager
+import com.net.learning.kotlinnewspluginlib.NewsResult
 
 /**
  * LaunchViewModel

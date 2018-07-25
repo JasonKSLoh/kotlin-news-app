@@ -3,6 +3,7 @@ package com.jason.experiments.kotlinnewsapp.builtinplugin
 import com.google.gson.Gson
 import com.jason.experiments.kotlinnewsapp.BuildConfig
 import com.jason.experiments.kotlinnewsapp.builtinplugin.newsapimodel.NewsApiResponse
+import com.net.learning.kotlinnewspluginlib.NewsManager
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -12,12 +13,11 @@ import okhttp3.Response
 import java.util.concurrent.TimeUnit
 
 /**
- * ApiHandler
+ * NewsApiNewsManager
  * Created by jason on 24/7/18.
  */
-class ApiHandler {
-
-    fun fetchTopStories(category: String): Observable<NewsApiResponse> {
+class NewsApiNewsManager : NewsManager {
+    override fun fetchTopStories(category: String): Observable<NewsApiResponse> {
         val url = NewsConsts.API_ENDPOINT +
                 "category=$category&" +
                 "pageSize=100&" +
@@ -45,4 +45,17 @@ class ApiHandler {
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnError { it.printStackTrace() }
     }
+
+    override fun getNewsResultsStringArrays(apiResponse: Any): ArrayList<Array<String>> {
+        val newsList = ArrayList<Array<String>>()
+        if(apiResponse is NewsApiResponse){
+            apiResponse.articles?.let {
+                for (newsResult in it) {
+                    newsList.add(newsResult.toNewsResultStringArray())
+                }
+            }
+        }
+        return newsList
+    }
 }
+

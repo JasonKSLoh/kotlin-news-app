@@ -18,7 +18,7 @@
             </intent-filter>
         </activity>
         <service
-            android:name=".MessengerService">
+            android:name=".NytMessengerService">
             <intent-filter>
                 <action android:name="com.jason.experiments.kotlinnewsapp.action_get_plugin"/>
             </intent-filter>

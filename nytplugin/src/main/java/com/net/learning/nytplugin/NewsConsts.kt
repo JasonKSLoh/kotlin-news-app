@@ -5,7 +5,7 @@ package com.net.learning.nytplugin
  * Created by jason on 24/7/18.
  */
 object NewsConsts {
-    public val CATEGORIES = arrayOf("home"
+    public val CATEGORIES = arrayListOf<String>("home"
                                               , "opinion"
                                               , "world"
                                               , "national"

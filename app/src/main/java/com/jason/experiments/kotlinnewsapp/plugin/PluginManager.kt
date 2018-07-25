@@ -7,8 +7,9 @@ import android.graphics.Bitmap
 import android.util.Log
 import android.widget.Toast
 import com.jason.experiments.kotlinnewsapp.BuildConfig
-import com.jason.experiments.kotlinnewsapp.model.NewsResult
 import com.jason.experiments.kotlinnewsapp.ui.launch.NewsSource
+import com.net.learning.kotlinnewspluginlib.NewsResult
+import com.net.learning.kotlinnewspluginlib.PluginConsts
 import javax.inject.Inject
 
 /**
@@ -21,7 +22,6 @@ class PluginManager : PluginConnector.PluginConnectorCallbackListener {
         const val ACTION_GET_PLUGIN = BuildConfig.APPLICATION_ID + ".action_get_plugin"
         const val KEY_PACKAGE_NAME = "key_package_name"
         const val KEY_PLUGIN_NAME = "key_plugin_name"
-
     }
 
     @Inject
@@ -71,7 +71,7 @@ class PluginManager : PluginConnector.PluginConnectorCallbackListener {
             return
         }
         isActive = true
-        currentMsgFunction = PluginConnector.MSG_GET_CATEGORIES
+        currentMsgFunction = PluginConsts.MSG_GET_CATEGORIES
         pluginConnector?.unbindService()
         pluginConnector = PluginConnector(context, pluginPackage, this)
         pluginConnector?.bindService()
@@ -82,7 +82,7 @@ class PluginManager : PluginConnector.PluginConnectorCallbackListener {
             return
         }
         isActive = true
-        currentMsgFunction = PluginConnector.MSG_GET_NEWS
+        currentMsgFunction = PluginConsts.MSG_GET_NEWS
         requestedNewsCategory = category
         pluginConnector?.unbindService()
         pluginConnector = PluginConnector(context, pluginPackage, this)
@@ -94,7 +94,7 @@ class PluginManager : PluginConnector.PluginConnectorCallbackListener {
         val pluginsIterator = plugins.listIterator(pluginIndex)
         if (pluginsIterator.hasNext()) {
             val packageName = pluginsIterator.next()
-            currentMsgFunction = PluginConnector.MSG_GET_METADATA
+            currentMsgFunction = PluginConsts.MSG_GET_METADATA
             pluginConnector = PluginConnector(context, packageName, this)
             pluginConnector?.bindService()
             pluginIndex++
@@ -123,10 +123,10 @@ class PluginManager : PluginConnector.PluginConnectorCallbackListener {
     override fun timeoutOccurred() {
         isActive = false
         Log.d(LOG_TAG, "Timeout Occurred")
-        if(currentMsgFunction == PluginConnector.MSG_GET_METADATA){
+        if(currentMsgFunction == PluginConsts.MSG_GET_METADATA){
             getNextPluginInfo()
         }
-        if(currentMsgFunction == PluginConnector.MSG_GET_NEWS) {
+        if(currentMsgFunction == PluginConsts.MSG_GET_NEWS) {
             Toast.makeText(context, "Timeout Occurred while attempting to fetch news", Toast.LENGTH_SHORT).show()
             listener?.onPluginNewsFetched(ArrayList())
         }
@@ -134,13 +134,13 @@ class PluginManager : PluginConnector.PluginConnectorCallbackListener {
 
     override fun serviceConnected() {
         when (currentMsgFunction) {
-            PluginConnector.MSG_GET_METADATA -> {
+            PluginConsts.MSG_GET_METADATA -> {
                 pluginConnector?.getMetaData()
             }
-            PluginConnector.MSG_GET_CATEGORIES -> {
+            PluginConsts.MSG_GET_CATEGORIES -> {
                 pluginConnector?.getCategories()
             }
-            PluginConnector.MSG_GET_NEWS -> {
+            PluginConsts.MSG_GET_NEWS -> {
                 pluginConnector?.getNews(requestedNewsCategory)
             }
             else -> {

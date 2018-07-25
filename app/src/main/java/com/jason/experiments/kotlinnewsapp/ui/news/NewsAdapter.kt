@@ -11,9 +11,9 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.jason.experiments.kotlinnewsapp.R
-import com.jason.experiments.kotlinnewsapp.model.NewsResult
 import com.jason.experiments.kotlinnewsapp.network.NetworkConsts
 import com.jason.experiments.kotlinnewsapp.ui.web.WebActivity
+import com.net.learning.kotlinnewspluginlib.NewsResult
 import kotlinx.android.synthetic.main.item_news_result.view.*
 
 /**

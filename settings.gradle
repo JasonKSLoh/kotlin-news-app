@@ -1,1 +1,1 @@
-include ':app', ':nytplugin'
+include ':app', ':nytplugin', ':kotlinnewspluginlib'

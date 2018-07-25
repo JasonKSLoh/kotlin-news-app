@@ -38,7 +38,6 @@ class LaunchActivity() : AppCompatActivity(){
         setupRecyclerView()
         setupObservers()
         launchViewModel.fetchPluginMetaData()
-
     }
 
     private fun setupToothpick() {

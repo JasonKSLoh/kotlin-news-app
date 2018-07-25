@@ -1,6 +1,7 @@
 package com.net.learning.nytplugin
 
 import com.google.gson.Gson
+import com.net.learning.kotlinnewspluginlib.NewsManager
 import com.net.learning.nytplugin.nyt.NytNewsResponse
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -11,12 +12,11 @@ import okhttp3.Response
 import java.util.concurrent.TimeUnit
 
 /**
- * ApiHandler
+ * NytNewsManager
  * Created by jason on 24/7/18.
  */
-class ApiHandler {
-
-    fun fetchTopStories(category: String): Observable<NytNewsResponse> {
+class NytNewsManager : NewsManager{
+    override fun fetchTopStories(category: String): Observable<NytNewsResponse> {
         val url = NewsConsts.API_ENDPOINT + category + ".json?api-key=" + NewsConsts.API_KEY
         val client = OkHttpClient.Builder()
                 .connectTimeout(NewsConsts.DEFAULT_TIMEOUT, TimeUnit.SECONDS)
@@ -41,4 +41,17 @@ class ApiHandler {
                 .doOnError { it.printStackTrace() }
     }
 
+
+    override fun getNewsResultsStringArrays(apiResponse: Any): ArrayList<Array<String>> {
+        val newsList = ArrayList<Array<String>>()
+        if(apiResponse is NytNewsResponse){
+            apiResponse.results?.let {
+                for (newsResult in it) {
+                    newsList.add(newsResult.toNewsResultStringArray())
+                }
+            }
+            return newsList
+        }
+        return newsList
+    }
 }

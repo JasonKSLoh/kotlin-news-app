@@ -1,4 +1,4 @@
-package com.net.learning.nytplugin
+package com.net.learning.kotlinnewspluginlib
 
 import android.os.Parcel
 import android.os.Parcelable
@@ -13,7 +13,7 @@ data class NewsResult(val title: String,
                       val section: String,
                       val subsection: String,
                       val articleUrl: String,
-                      val thumbUrl: String) : Parcelable {
+                      val thumbUrl: String):Parcelable {
     constructor(parcel: Parcel) : this(
             parcel.readString(),
             parcel.readString(),
