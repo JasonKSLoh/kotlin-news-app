@@ -9,28 +9,29 @@ import com.net.learning.kotlinnewspluginlib.NewsResult
  * NewsApiArticle
  * Created by jason on 24/7/18.
  */
-class NewsApiArticle {
-    @SerializedName("source")
-    @Expose
-    var newsApiSource: NewsApiSource? = null
-    @SerializedName("author")
-    @Expose
-    var author: String? = null
-    @SerializedName("title")
-    @Expose
-    var title: String? = null
-    @SerializedName("description")
-    @Expose
-    var description: String? = null
-    @SerializedName("url")
-    @Expose
-    var url: String? = null
-    @SerializedName("urlToImage")
-    @Expose
-    var urlToImage: String? = null
-    @SerializedName("publishedAt")
-    @Expose
-    var publishedAt: String? = null
+@Suppress("unused")
+data class NewsApiArticle(@SerializedName("source")
+                          @Expose
+                          var newsApiSource: NewsApiSource? = null,
+                          @SerializedName("author")
+                          @Expose
+                          var author: String? = null,
+                          @SerializedName("title")
+                          @Expose
+                          var title: String? = null,
+                          @SerializedName("description")
+                          @Expose
+                          var description: String? = null,
+                          @SerializedName("url")
+                          @Expose
+                          var url: String? = null,
+                          @SerializedName("urlToImage")
+                          @Expose
+                          var urlToImage: String? = null,
+                          @SerializedName("publishedAt")
+                          @Expose
+                          var publishedAt: String? = null) {
+
 
     fun toNewsResultStringArray(): Array<String> {
         val nrTitle = if (title == null) {

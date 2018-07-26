@@ -102,7 +102,7 @@ class NewsFragment: Fragment() {
             newsViewModel.fetchNews()
         }
 
-        ivSearchIcon.setOnTouchListener { v, event ->
+        ivSearchIcon.setOnTouchListener { _, event ->
             when(event.action){
                 MotionEvent.ACTION_DOWN -> {
                     ivSearchIcon.scaleX = 2f

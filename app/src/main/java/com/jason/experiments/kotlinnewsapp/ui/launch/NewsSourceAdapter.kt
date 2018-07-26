@@ -46,8 +46,8 @@ class NewsSourceAdapter(private var newsSources: List<NewsSource>)
     }
 
     class NewsSourceViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
-        var ivLogo = itemView?.iv_newssource_logo
-        var tvName = itemView?.tv_newssource_name
+        private var ivLogo = itemView?.iv_newssource_logo
+        private var tvName = itemView?.tv_newssource_name
 
         fun setupUi(newsSource: NewsSource) {
             Log.d("+_", "In setup viewholder")

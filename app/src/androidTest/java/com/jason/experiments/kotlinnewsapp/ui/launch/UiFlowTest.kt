@@ -21,8 +21,8 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class UiFlowTest {
 
-    lateinit var uiDevice: UiDevice
-    lateinit var instrumentation: Instrumentation
+    private lateinit var uiDevice: UiDevice
+    private lateinit var instrumentation: Instrumentation
 
     @get:Rule
     val activityRule = ActivityTestRule<LaunchActivity>(LaunchActivity::class.java)
@@ -52,7 +52,7 @@ class UiFlowTest {
         checkNewsActivity()
     }
 
-    fun checkNewsActivity() {
+    private fun checkNewsActivity() {
         uiDevice.waitForIdle()
         val titleText = uiDevice.findObject(UiSelector().textContains(NewsConsts.PLUGIN_TITLE))
         val categoryLabel = uiDevice.findObject(UiSelector().resourceId("com.jason.experiments.kotlinnewsapp:id/tv_news_category_label"))
@@ -72,7 +72,7 @@ class UiFlowTest {
         }
     }
 
-    fun checkFetchNews() {
+    private fun checkFetchNews() {
         uiDevice.waitForIdle()
         val searchButton = uiDevice.findObject(UiSelector().resourceId("com.jason.experiments.kotlinnewsapp:id/iv_news_search_icon"))
         searchButton.click()
@@ -94,8 +94,9 @@ class UiFlowTest {
         checkWebView()
     }
 
-    fun checkWebView() {
+    private fun checkWebView() {
         uiDevice.waitForIdle()
+        uiDevice.waitForWindowUpdate(null, 5000)
         val toolbar = uiDevice.findObject(UiSelector().resourceId("com.jason.experiments.kotlinnewsapp:id/toolbar_wv"))
         val webView = uiDevice.findObject(UiSelector().resourceId("com.jason.experiments.kotlinnewsapp:id/wv_web"))
 

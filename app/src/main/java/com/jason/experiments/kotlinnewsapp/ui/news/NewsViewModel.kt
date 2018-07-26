@@ -73,6 +73,7 @@ class NewsViewModel(injectedPluginManager: PluginManager, targetPlugin: String) 
     }
 }
 
+@Suppress("UNCHECKED_CAST")
 class NewsViewModelFactory(private val pluginManager: PluginManager, private val targetPlugin: String) :
         ViewModelProvider.NewInstanceFactory() {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {

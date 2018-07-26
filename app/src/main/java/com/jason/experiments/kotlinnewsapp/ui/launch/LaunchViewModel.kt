@@ -42,6 +42,7 @@ class LaunchViewModel(injectedPluginManager: PluginManager) : ViewModel(), Plugi
 }
 
 
+@Suppress("UNCHECKED_CAST")
 class LaunchViewModelFactory(private val pluginManager: PluginManager) :
         ViewModelProvider.NewInstanceFactory() {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {

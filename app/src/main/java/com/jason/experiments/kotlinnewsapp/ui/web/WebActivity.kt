@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.activity_web.*
  */
 class WebActivity : AppCompatActivity() {
 
-    lateinit var wvWeb: WebView
+    private lateinit var wvWeb: WebView
     lateinit var toolbar: Toolbar
     lateinit var pgLoadingWeb: ProgressBar
 
@@ -56,6 +56,7 @@ class WebActivity : AppCompatActivity() {
             }
         }
         wvWeb.webViewClient = object : WebViewClient() {
+            @Suppress("OverridingDeprecatedMember")
             override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
                 view?.loadUrl(url)
                 return true

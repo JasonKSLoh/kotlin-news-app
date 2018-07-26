@@ -118,7 +118,7 @@ class PluginConnector(val context: Context, private val targetPackage: String, v
                               , NEWS_TIMEOUT)
     }
 
-
+    @Suppress("UNCHECKED_CAST")
     inner class IncomingHandler(looper: Looper) : Handler(looper) {
         override fun handleMessage(msg: Message) {
             when(msg.what){
@@ -137,7 +137,7 @@ class PluginConnector(val context: Context, private val targetPackage: String, v
                     callback.pluginCategoriesRetrieved(categories)
                     hasFinished = true
                 }
-                PluginConsts.MSG_GET_NEWS -> {
+                PluginConsts.MSG_GET_NEWS ->  {
                     val data = msg.data
                     val newsResults = ArrayList<NewsResult>()
                     try{

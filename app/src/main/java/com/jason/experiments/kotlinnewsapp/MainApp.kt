@@ -10,6 +10,7 @@ import toothpick.config.Module
  * MainApp
  * Created by jason on 7/3/18.
  */
+@Suppress("unused")
 class MainApp: Application() {
 
     override fun onCreate() {

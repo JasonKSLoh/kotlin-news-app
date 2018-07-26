@@ -7,7 +7,10 @@ import android.graphics.Bitmap
  * Created by jason on 20/7/18.
  */
 
-data class NewsSource(val title: String, val logo: Bitmap, val pluginPackage: String){
+@Suppress("RemoveEmptyClassBody")
+data class NewsSource(val title: String,
+                      val logo: Bitmap,
+                      val pluginPackage: String){
 
 
 }

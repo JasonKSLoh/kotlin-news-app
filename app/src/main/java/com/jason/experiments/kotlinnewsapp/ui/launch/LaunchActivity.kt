@@ -18,7 +18,7 @@ import javax.inject.Inject
  * LaunchActivity
  * Created by jason on 20/7/18.
  */
-class LaunchActivity() : AppCompatActivity(){
+class LaunchActivity : AppCompatActivity(){
     private lateinit var rvNewsSources: RecyclerView
     private lateinit var newsSourceAdapter: NewsSourceAdapter
     private lateinit var tvNoPlugins: TextView

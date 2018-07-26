@@ -26,11 +26,6 @@ class NewsAdapter(entries: ArrayList<NewsResult>) : RecyclerView.Adapter<NewsVie
 
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
         val currentEntry = newsResults[position]
-
-        val context = holder.view.context
-        holder.tvTitle?.text = context?.getString(R.string.error_occurred_msg)
-        holder.tvByline?.text = context?.getString(R.string.unable_to_load_msg)
-
         holder.setupViewholderUi(currentEntry)
     }
 
@@ -44,7 +39,7 @@ class NewsAdapter(entries: ArrayList<NewsResult>) : RecyclerView.Adapter<NewsVie
     }
 
 
-    public fun setNewsResults(results: ArrayList<NewsResult>) {
+    fun setNewsResults(results: ArrayList<NewsResult>) {
         this.newsResults = results
         notifyDataSetChanged()
     }
@@ -54,13 +49,13 @@ class NewsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     val view = itemView
 
-    val tvSection: TextView? = itemView.tv_section
-    val tvSubsection: TextView? = itemView.tv_subsection
-    val tvTitle: TextView? = itemView.tv_title
-    val tvByline: TextView? = itemView.tv_byline
-    val tvAbstract: TextView? = itemView.tv_abstract
-    val ivThumbnail: ImageView? = itemView.iv_thumbnail
-    val ivExpandCollapse: ImageView? = itemView.iv_expand_collapse
+    private val tvSection: TextView? = itemView.tv_section
+    private val tvSubsection: TextView? = itemView.tv_subsection
+    private val tvTitle: TextView? = itemView.tv_title
+    private val tvByline: TextView? = itemView.tv_byline
+    private val tvAbstract: TextView? = itemView.tv_abstract
+    private val ivThumbnail: ImageView? = itemView.iv_thumbnail
+    private val ivExpandCollapse: ImageView? = itemView.iv_expand_collapse
 
     @Suppress("MoveLambdaOutsideParentheses")
     @SuppressLint("SetTextI18n")

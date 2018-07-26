@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.jason.experiments.kotlinnewsapp.util
 
 import android.support.v4.app.Fragment
