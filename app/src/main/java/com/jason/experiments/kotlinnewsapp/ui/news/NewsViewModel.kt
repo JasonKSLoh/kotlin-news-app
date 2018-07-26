@@ -18,6 +18,7 @@ class NewsViewModel(injectedPluginManager: PluginManager, targetPlugin: String) 
     private val categoriesLiveData: MutableLiveData<ArrayList<String>> = MutableLiveData()
     private val newsLiveData: MutableLiveData<ArrayList<NewsResult>> = MutableLiveData()
     private val shouldShowLoading: MutableLiveData<Boolean> = MutableLiveData()
+
     private val pluginPackage = targetPlugin
     private var selectedCategory: String = ""
 

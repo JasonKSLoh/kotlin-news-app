@@ -1,8 +1,11 @@
 package com.jason.experiments.kotlinnewsapp.ui.news
 
 import android.arch.core.executor.testing.InstantTaskExecutorRule
+import android.arch.lifecycle.Observer
 import com.jason.experiments.kotlinnewsapp.plugin.PluginManager
 import com.net.learning.kotlinnewspluginlib.NewsResult
+import io.mockk.spyk
+import io.mockk.verify
 import junit.framework.Assert
 import org.junit.Before
 import org.junit.Rule
@@ -14,7 +17,7 @@ import org.mockito.junit.MockitoJUnit
 
 /**
  * NewsViewModelTest
- * Created by jason on 25/7/18.
+ * Created by jason on 26/7/18.
  */
 class NewsViewModelTest {
 
@@ -32,7 +35,7 @@ class NewsViewModelTest {
     val mockPackageName = "MockPackage"
 
     @Before
-    fun setup(){
+    fun setup() {
         MockitoAnnotations.initMocks(this)
         newsViewModel = NewsViewModel(pluginManager, mockPackageName)
     }
@@ -69,6 +72,43 @@ class NewsViewModelTest {
         Assert.assertEquals(true, newsViewModel.getShouldShowLoadingLiveData().value)
     }
 
+    @Test
+    fun newsObserverTest() {
+        val mockNewsObserver = spyk<Observer<ArrayList<NewsResult>>>()
+        val testNews = ArrayList<NewsResult>()
+
+        val nvmNews = newsViewModel.getNewsLiveData().value
+        newsViewModel.getNewsLiveData().observeForever(mockNewsObserver)
+        verify(exactly = 1) { mockNewsObserver.onChanged(nvmNews) }
+        newsViewModel.onPluginNewsFetched(testNews)
+        verify(exactly = 2) { mockNewsObserver.onChanged(testNews) }
+    }
+
+    @Test
+    fun categoriesObserverTest() {
+        val mockCategoriesObserver = spyk<Observer<ArrayList<String>>>()
+        val testCategories = ArrayList<String>()
+        val nvmCategories = newsViewModel.getCategoriesLiveData().value
+
+        newsViewModel.getCategoriesLiveData().observeForever(mockCategoriesObserver)
+        verify(exactly = 1) { mockCategoriesObserver.onChanged(nvmCategories) }
+        newsViewModel.onPluginCategoriesFetched(testCategories)
+        verify(exactly = 2) { mockCategoriesObserver.onChanged(testCategories) }
+    }
+
+    @Test
+    fun progressObserverTest() {
+        val mockProgressObserver = spyk<Observer<Boolean>>()
+        val nvmProgress = newsViewModel.getShouldShowLoadingLiveData().value
+
+        val testNews = ArrayList<NewsResult>()
+        newsViewModel.getShouldShowLoadingLiveData().observeForever(mockProgressObserver)
+        verify(exactly = 1) { mockProgressObserver.onChanged(nvmProgress) }
+        newsViewModel.fetchNews()
+        verify(exactly = 1) { mockProgressObserver.onChanged(true) }
+        newsViewModel.onPluginNewsFetched(testNews)
+        verify(exactly = 2) { mockProgressObserver.onChanged(false) }
+    }
 
 
 }

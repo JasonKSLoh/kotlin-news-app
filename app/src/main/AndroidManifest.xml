@@ -2,8 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.jason.experiments.kotlinnewsapp">
 
+    <!--Permissions-->
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+
+    <!--Application-->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,8 +16,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:name=".MainApp">
+
+        <!--MetaData-->
+        <meta-data android:name="android.max_aspect" android:value="2.1" />
+
+
+        <!--WebView Activity-->
         <activity android:name=".ui.web.WebActivity"
             android:configChanges="orientation|keyboard|keyboardHidden"/>
+
+
+        <!--Launch Activity-->
         <activity android:name=".ui.launch.LaunchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -21,8 +34,13 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+
+        <!--News Display Activity-->
         <activity android:name=".ui.news.NewsActivity"/>
 
+
+        <!--NewsApi Plugin Service-->
         <service android:name=".builtinplugin.NewsApiMessengerService"
             android:process=":externalPx">
             <intent-filter>

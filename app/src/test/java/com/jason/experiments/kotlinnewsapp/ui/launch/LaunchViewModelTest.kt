@@ -1,7 +1,10 @@
 package com.jason.experiments.kotlinnewsapp.ui.launch
 
 import android.arch.core.executor.testing.InstantTaskExecutorRule
+import android.arch.lifecycle.Observer
 import com.jason.experiments.kotlinnewsapp.plugin.PluginManager
+import io.mockk.spyk
+import io.mockk.verify
 import junit.framework.Assert
 import org.junit.Before
 import org.junit.Rule
@@ -13,10 +16,9 @@ import org.mockito.junit.MockitoJUnit
 
 /**
  * LaunchViewModelTest
- * Created by jason on 25/7/18.
+ * Created by jason on 26/7/18.
  */
 class LaunchViewModelTest {
-
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
 
@@ -29,7 +31,7 @@ class LaunchViewModelTest {
     lateinit var launchViewModel: LaunchViewModel
 
     @Before
-    fun setup(){
+    fun setup() {
         MockitoAnnotations.initMocks(this)
         launchViewModel = LaunchViewModel(pluginManager)
     }
@@ -60,5 +62,16 @@ class LaunchViewModelTest {
 
     @Test
     fun onPluginNewsFetched() {
+    }
+
+    @Test
+    fun observerTest() {
+        val mockObserver = spyk<Observer<ArrayList<NewsSource>>>()
+        val testNewsSources = ArrayList<NewsSource>()
+        val lvmArray = launchViewModel.getNewsSources().value
+        launchViewModel.getNewsSources().observeForever(mockObserver)
+        verify(exactly = 1) { mockObserver.onChanged(lvmArray)}
+        launchViewModel.onPluginMetaDataFetched(testNewsSources)
+        verify(exactly = 2) { mockObserver.onChanged(testNewsSources)}
     }
 }
