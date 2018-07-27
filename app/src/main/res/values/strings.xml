@@ -13,5 +13,6 @@
     <string name="category">Category</string>
     <string name="cd_news_search_icon">Load News Button</string>
     <string name="cd_expand_collapse">Expand/Collapse Abstract</string>
+    <string name="plugins_found">Plugins Found:</string>
 
 </resources>

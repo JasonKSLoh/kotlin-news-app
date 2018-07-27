@@ -20,7 +20,6 @@ import org.junit.runner.RunWith
  */
 @RunWith(AndroidJUnit4::class)
 class UiFlowTest {
-
     private lateinit var uiDevice: UiDevice
     private lateinit var instrumentation: Instrumentation
 

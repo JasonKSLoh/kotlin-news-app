@@ -11,6 +11,4 @@ import android.graphics.Bitmap
 data class NewsSource(val title: String,
                       val logo: Bitmap,
                       val pluginPackage: String){
-
-
 }

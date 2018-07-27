@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.TextView
 import com.jason.experiments.kotlinnewsapp.R
 import com.jason.experiments.kotlinnewsapp.plugin.PluginManager
+import com.jason.experiments.kotlinnewsapp.ui.launch.epoxy.PluginsEpoxyController
 import kotlinx.android.synthetic.main.activity_launch.*
 import toothpick.Toothpick
 import javax.inject.Inject
@@ -20,10 +21,12 @@ import javax.inject.Inject
  */
 class LaunchActivity : AppCompatActivity(){
     private lateinit var rvNewsSources: RecyclerView
-    private lateinit var newsSourceAdapter: NewsSourceAdapter
     private lateinit var tvNoPlugins: TextView
-
     private lateinit var launchViewModel: LaunchViewModel
+
+    private lateinit var pluginsEpoxyController: PluginsEpoxyController
+
+//    private lateinit var newsSourceAdapter: NewsSourceAdapter
 
     @Inject
     lateinit var pluginManager: PluginManager
@@ -48,7 +51,8 @@ class LaunchActivity : AppCompatActivity(){
     private fun setupObservers(){
         val newsSourceObserver = Observer<ArrayList<NewsSource>>{
             it?.let {
-                newsSourceAdapter.setNewsSources(it)
+//                newsSourceAdapter.setNewsSources(it)
+                pluginsEpoxyController.setData(it)
                 if(it.isEmpty()){
                     tvNoPlugins.visibility = View.VISIBLE
                 } else {
@@ -62,9 +66,11 @@ class LaunchActivity : AppCompatActivity(){
 
     private fun setupRecyclerView() {
         rvNewsSources = rv_news_sources
-        newsSourceAdapter = NewsSourceAdapter(launchViewModel.getNewsSources().value!!)
+        pluginsEpoxyController = PluginsEpoxyController()
         rvNewsSources.layoutManager = LinearLayoutManager(baseContext)
-        rvNewsSources.adapter = newsSourceAdapter
+        rvNewsSources.adapter = pluginsEpoxyController.adapter
+//        newsSourceAdapter = NewsSourceAdapter(launchViewModel.getNewsSources().value!!)
+//        rvNewsSources.adapter = newsSourceAdapter
     }
 
 
